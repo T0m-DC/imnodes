@@ -350,10 +350,10 @@ void ImDrawListGrowChannels(ImDrawList* draw_list, const int num_channels)
         {
             ImDrawCmd draw_cmd;
             draw_cmd.ClipRect = draw_list->_ClipRectStack.back();
-#if IMGUI_VERSION_NUM < 19200
-            draw_cmd.TextureId = draw_list->_TextureIdStack.back();
-#else
+#ifdef IMGUI_HAS_TEXTURES
             draw_cmd.TexRef = draw_list->_TextureStack.back();
+#else
+            draw_cmd.TextureId = draw_list->_TextureIdStack.back();
 #endif
             channel._CmdBuffer.push_back(draw_cmd);
         }
