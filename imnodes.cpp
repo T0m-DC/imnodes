@@ -1402,7 +1402,9 @@ TriangleOffsets CalculateTriangleOffsets(const float side_length)
 
 void DrawPinShape(const ImVec2& pin_pos, const ImPinData& pin, const ImU32 pin_color)
 {
-    static const int CIRCLE_NUM_SEGMENTS = 8;
+    // 0 lets Dear ImGui pick the segment count from the radius and
+    // ImGuiStyle::CircleTessellationMaxError, so a large pin stays round.
+    static const int CIRCLE_NUM_SEGMENTS = 0;
 
     switch (pin.Shape)
     {
